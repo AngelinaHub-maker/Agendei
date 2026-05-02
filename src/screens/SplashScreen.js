@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { LogBox } from 'react-native';
 import {
   View,
   Text,
@@ -22,17 +21,15 @@ export default function SplashScreen({ navigation }) {
       <StatusBar barStyle="light-content" backgroundColor="#5cc6ba" />
 
       <View style={styles.logoContainer}>
+        <View style={styles.circle}>
+          <Text style={styles.logoText}>A</Text>
+        </View>
 
-  <Image 
-    source={require('../assets/logo.png')} 
-    style={styles.logoMain}
-  />
-  <Image 
-    source={require('../assets/loading.png')} 
-    style={styles.logoOverlay}
-  />
-
-   </View>
+        <Text style={styles.title}>Agendei</Text>
+        <Text style={styles.subtitle}>
+          Seu app de agendamentos
+        </Text>
+      </View>
     </View>
   );
 }
@@ -49,6 +46,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  circle: {
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 25,
+  },
+
+  logoText: {
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: '#5cc6ba',
+  },
+
   title: {
     fontSize: 36,
     fontWeight: 'bold',
@@ -60,16 +73,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#eaf8f6',
   },
-  logoMain: {
-  width: 60,
-  height: 60,
-},
-
-logoOverlay: {
-  position: 'absolute',
-  width: 20,
-  height: 20,
-  bottom: 0,
-  right: 0,
-}
 });

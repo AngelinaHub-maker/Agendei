@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Image } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -21,57 +20,26 @@ const Tab = createBottomTabNavigator();
 
 function Tabs() {
   return (
-    < Tab.Navigator screenOptions={{ headerShown: false,  tabBarShowLabel: false, }}>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
-  name="Home"
-  component={HomeScreen}
-  options={{
-    tabBarIcon: () => (
-      <Image
-        source={require('../../assets/icons/home.png')}
-        style={{ width: 24, height: 24 }}
+        name="Home"
+        component={HomeScreen}
       />
-    ),
-  }}
-/>
-     <Tab.Screen
-name="Explorar"
-component={ExploreScreen}
-  options={{
-    tabBarIcon: () => (
-      <Image
-        source={require('../../assets/icons/search.png')}
-        style={{ width: 24, height: 24 }}
-      />
-    ),
-  }}
-/>
-
-    <Tab.Screen
-name="Reservas"
-component={ReservasScreen}
-  options={{
-    tabBarIcon: () => (
-      <Image
-        source={require('../../assets/icons/calendar.png')}
-        style={{ width: 24, height: 24 }}
-      />
-    ),
-  }}
-/>
 
       <Tab.Screen
-  name="Perfil"
-component={ProfileScreen}
-  options={{
-    tabBarIcon: () => (
-      <Image
-        source={require('../../assets/icons/user.png')}
-        style={{ width: 24, height: 24 }}
+        name="Explorar"
+        component={ExploreScreen}
       />
-    ),
-  }}
-/>
+
+      <Tab.Screen
+        name="Reservas"
+        component={ReservasScreen}
+      />
+
+      <Tab.Screen
+        name="Perfil"
+        component={ProfileScreen}
+      />
     </Tab.Navigator>
   );
 }

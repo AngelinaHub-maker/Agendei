@@ -5,16 +5,16 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Image,
+  
 } from 'react-native';
 
-import { categories, establishments } from '../data/mockData';
+import { categories, estabelecimentos } from '../data/mockData';
 
 export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.greeting}>Olá, Usuário 👋</Text>
+        <Text style={styles.greeting}>Olá, Angelina 👋</Text>
         <Text style={styles.subtitle}>
           Encontre seu agendamento ideal
         </Text>
@@ -31,10 +31,10 @@ export default function HomeScreen({ navigation }) {
       >
         {categories.map((item) => (
           <TouchableOpacity key={item.id} style={styles.categoryCard}>
-            <Image
-  source={item.icon}
-  style={styles.categoryImage}
-/>
+            <Text style={styles.categoryIcon}>
+              {item.icon}
+            </Text>
+
             <Text style={styles.categoryText}>
               {item.name}
             </Text>
@@ -46,7 +46,7 @@ export default function HomeScreen({ navigation }) {
         Mais populares
       </Text>
 
-      {establishments.map((item) => (
+      {estabelecimentos.map((item) => (
         <TouchableOpacity
           key={item.id}
           style={styles.card}
@@ -56,10 +56,11 @@ export default function HomeScreen({ navigation }) {
             })
           }
         >
-          <Image
-  source={item.image}
-  style={styles.cardImage}
-/>
+          <View style={styles.imagePlaceholder}>
+            <Text style={styles.imageText}>
+              Clínica
+            </Text>
+          </View>
 
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>
@@ -90,13 +91,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8fafa',
     paddingHorizontal: 20,
   },
-
-  categoryImage: {
-  width: 42,
-  height: 42,
-  resizeMode: 'contain',
-  marginBottom: 10,
-},
 
   header: {
     marginTop: 60,
@@ -140,12 +134,6 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
   },
-
-  cardImage: {
-  width: '100%',
-  height: 160,
-  resizeMode: 'cover',
-},
 
   categoryIcon: {
     fontSize: 30,

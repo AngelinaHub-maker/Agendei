@@ -3,60 +3,76 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
+  
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
-export default function EstabelecimentoScreen({ navigation }) {
+export default function EstablishmentScreen({
+  route,
+  navigation,
+}) {
+  const { establishment } = route.params;
+
   return (
     <ScrollView style={styles.container}>
-      
-      {/* SETA VOLTAR */}
-      <TouchableOpacity style={styles.backButton}>
-        <Image
-          source={require('../assets/back.png')}
-          style={styles.back}
-        />
-      </TouchableOpacity>
-
-      {/* FOTO DA CLÍNICA */}
-      <Image
-        source={require('../assets/clinica.jpg')}
-        style={styles.image}
-      />
-
-      {/* INFORMAÇÕES */}
-      <View style={styles.info}>
-        <Text style={styles.name}>Clínica Médica São Remo</Text>
-        <Text style={styles.address}>
-          Av. Nove de Julho, 854{"\n"}Centro - São Paulo
+      <View style={styles.imageContainer}>
+        <Text style={styles.imageText}>
+          Clínica
         </Text>
       </View>
 
-      {/* SERVIÇOS */}
-      <Text style={styles.sectionTitle}>Serviços</Text>
+      <View style={styles.content}>
+        <Text style={styles.title}>
+          {establishment.name}
+        </Text>
 
-      {[
-        { nome: 'Consulta Dr. Alberto Souza', preco: 'R$ 300,00' },
-        { nome: 'Consulta Dra. Maria Alice', preco: 'R$ 450,00' },
-        { nome: 'Exame Mamografia', preco: 'R$ 620,00' },
-        { nome: 'Exame Ultrassom', preco: 'R$ 270,00' },
-      ].map((item, index) => (
-        <View key={index} style={styles.service}>
-          <View>
-            <Text style={styles.serviceName}>{item.nome}</Text>
-            <Text style={styles.price}>{item.preco}</Text>
+        <Text style={styles.category}>
+          {establishment.category}
+        </Text>
+
+        <Text style={styles.address}>
+          📍 {establishment.address}
+        </Text>
+
+        <Text style={styles.rating}>
+          ⭐ {establishment.rating}
+        </Text>
+
+        <Text style={styles.sectionTitle}>
+          Serviços disponíveis
+        </Text>
+
+        {establishment.services.map((service) => (
+          <View key={service.id} style={styles.serviceCard}>
+            <View>
+              <Text style={styles.serviceName}>
+                {service.name}
+              </Text>
+
+              <Text style={styles.servicePrice}>
+                {service.price}
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() =>
+               navigation.navigate('Agendamento', {
+                  establishment,
+                  service,
+                })
+              }
+            >
+              <Text style={styles.buttonText}>
+                Agendar
+              </Text>
+            </TouchableOpacity>
           </View>
+        ))}
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('Agendamento')}
-          >
-            <Text style={styles.buttonText}>Agendar</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
+        <View style={{ height: 40 }} />
+      </View>
     </ScrollView>
   );
 }
@@ -64,76 +80,99 @@ export default function EstabelecimentoScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f8fafa',
   },
 
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 15,
-    zIndex: 1,
+  imageContainer: {
+    height: 260,
+    backgroundColor: '#5cc6ba',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
-  back: {
-    width: 25,
-    height: 25,
-  },
-
-  image: {
-    width: '100%',
-    height: 180,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-
-  info: {
-    padding: 15,
-  },
-
-  name: {
-    fontSize: 16,
+  imageText: {
+    color: '#ffffff',
+    fontSize: 34,
     fontWeight: 'bold',
+  },
+
+  content: {
+    padding: 22,
+  },
+
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#222',
+  },
+
+  category: {
+    marginTop: 10,
+    fontSize: 17,
+    color: '#5cc6ba',
+    fontWeight: '600',
   },
 
   address: {
-    color: '#777',
-    marginTop: 5,
+    marginTop: 12,
+    fontSize: 15,
+    color: '#666',
+  },
+
+  rating: {
+    marginTop: 10,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#444',
   },
 
   sectionTitle: {
-    color: '#5cc6ba',
-    fontSize: 18,
+    marginTop: 35,
+    marginBottom: 20,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginLeft: 15,
-    marginTop: 10,
+    color: '#222',
   },
 
-  service: {
+  serviceCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 22,
+    padding: 18,
+    marginBottom: 18,
+
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderColor: '#eee',
+
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 5,
+    elevation: 3,
   },
 
   serviceName: {
-    fontSize: 14,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#222',
   },
 
-  price: {
+  servicePrice: {
+    marginTop: 8,
+    fontSize: 15,
     color: '#5cc6ba',
-    marginTop: 3,
+    fontWeight: '600',
   },
 
   button: {
     backgroundColor: '#5cc6ba',
-    paddingVertical: 6,
-    paddingHorizontal: 15,
-    borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 14,
   },
 
   buttonText: {
-    color: '#fff',
+    color: '#ffffff',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
 });

@@ -6,7 +6,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
-  Image,
+  
 } from 'react-native';
 
 import { establishments } from '../data/mockData';
@@ -48,12 +48,13 @@ export default function ExploreScreen({ navigation }) {
               })
             }
           >
-            <Image
-  source={item.image}
-  style={styles.cardImage}
-/>
+            <View style={styles.imagePlaceholder}>
+              <Text style={styles.imageText}>
+                Clínica
+              </Text>
+            </View>
 
-<View style={styles.cardContent}>
+            <View style={styles.cardContent}>
               <View style={styles.row}>
                 <Text style={styles.cardTitle}>
                   {item.name}
@@ -75,7 +76,7 @@ export default function ExploreScreen({ navigation }) {
               <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                  navigation.navigate('Estabelecimento', {
+                  navigation.navigate('Establishment', {
                     establishment: item,
                   })
                 }
@@ -138,24 +139,27 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 22,
 
-    flexDirection: 'row',
-
     shadowColor: '#000',
     shadowOpacity: 0.07,
     shadowRadius: 6,
     elevation: 4,
   },
 
-  cardImage: {
-  width: 120,
-  height: '100%',
-  resizeMode: 'cover',
-},
+  imagePlaceholder: {
+    height: 160,
+    backgroundColor: '#5cc6ba',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  imageText: {
+    color: '#ffffff',
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
 
   cardContent: {
-    flex: 1,
-    padding: 16,
-    justifyContent: 'center',
+    padding: 18,
   },
 
   row: {
@@ -165,7 +169,7 @@ const styles = StyleSheet.create({
   },
 
   cardTitle: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#222',
   },
