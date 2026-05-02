@@ -1,23 +1,31 @@
+import dentist from '../../assets/categories/dentist.png';
+import aesthetic from '../../assets/categories/aesthetic.png';
+import psychologist from '../../assets/categories/psychologist.png';
+import gym from '../../assets/categories/gym.png';
+
+import clinic1 from '../../assets/clinic1.jpg';
+import clinic2 from '../../assets/clinic2.jpg';
+import clinic3 from '../../assets/clinic3.jpg';
 export const categories = [
   {
     id: 1,
     name: 'Dentista',
-    icon: '🦷',
+    icon: dentist,
   },
   {
     id: 2,
     name: 'Estética',
-    icon: '💅',
+    icon: aesthetic,
   },
   {
     id: 3,
     name: 'Psicólogo',
-    icon: '🧠',
+    icon: psychologist,
   },
   {
     id: 4,
     name: 'Academia',
-    icon: '🏋️',
+    icon: gym,
   },
 ];
 
@@ -29,7 +37,7 @@ export const establishments = [
     rating: 4.9,
     address: 'Rua das Flores, 120',
     image:
-      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop',
+      clinic1,
     services: [
       {
         id: 1,
@@ -51,7 +59,7 @@ export const establishments = [
     rating: 4.8,
     address: 'Av. Central, 455',
     image:
-      'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200&auto=format&fit=crop',
+       clinic2,
     services: [
       {
         id: 1,
@@ -73,7 +81,7 @@ export const establishments = [
     rating: 5.0,
     address: 'Rua Aurora, 90',
     image:
-      'https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200&auto=format&fit=crop',
+      clinic3,
     services: [
       {
         id: 1,

@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8fafa',
     paddingHorizontal: 20,
+    paddingTop: 10,
   },
 
   header: {
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#ffffff',
     borderRadius: 24,
-    padding: 22,
+    padding: 18,
     marginBottom: 22,
 
     shadowColor: '#000',
@@ -156,14 +157,14 @@ const styles = StyleSheet.create({
   },
 
   establishment: {
-    fontSize: 22,
+    fontSize: 19,
     fontWeight: 'bold',
     color: '#222',
     flex: 1,
   },
 
   statusBadge: {
-    backgroundColor: '#dff7f3',
+backgroundColor: '#e7faf7',
     paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 12,
@@ -188,14 +189,14 @@ const styles = StyleSheet.create({
     color: '#666',
   },
 
-  cancelButton: {
-    marginTop: 24,
-    backgroundColor: '#ff5c5c',
-    height: 52,
-    borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+cancelButton: {
+  marginTop: 20,
+  backgroundColor: '#ff5c5c',
+  height: 48,
+  borderRadius: 14,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
 
   cancelButtonText: {
     color: '#ffffff',

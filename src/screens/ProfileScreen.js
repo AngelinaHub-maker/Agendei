@@ -18,11 +18,11 @@ export default function ProfileScreen() {
         </View>
 
         <Text style={styles.name}>
-          Angelina Freitas
+          Natan Aguiar
         </Text>
 
         <Text style={styles.email}>
-          angelina@email.com
+          nataNet@email.com
         </Text>
       </View>
 
@@ -117,9 +117,9 @@ const styles = StyleSheet.create({
   },
 
   avatar: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
+    width: 95,
+    height: 95,
+    borderRadius: 48,
     backgroundColor: '#5cc6ba',
     justifyContent: 'center',
     alignItems: 'center',
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
 
   name: {
     marginTop: 20,
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#222',
   },
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   optionCard: {
     backgroundColor: '#ffffff',
     borderRadius: 22,
-    padding: 20,
+    padding: 18,
     marginBottom: 18,
 
     flexDirection: 'row',
@@ -186,13 +186,13 @@ const styles = StyleSheet.create({
   },
 
   logoutButton: {
-    marginTop: 20,
-    backgroundColor: '#ff5c5c',
-    height: 58,
-    borderRadius: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  marginTop: 18,
+  backgroundColor: '#ff5c5c',
+  height: 52,
+  borderRadius: 14,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
 
   logoutText: {
     color: '#ffffff',

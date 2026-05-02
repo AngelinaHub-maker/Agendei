@@ -1,240 +1,144 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Alert,
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
-export default function BookingScreen({
-  route,
-  navigation,
-}) {
-  const { establishment, service } = route.params;
-
-  const [selectedHour, setSelectedHour] = useState(null);
-
-  const hours = [
-    '08:00',
-    '09:00',
-    '10:00',
-    '11:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-  ];
-
-  function handleBooking() {
-    if (!selectedHour) {
-      Alert.alert(
-        'Selecione um horário',
-        'Escolha um horário para continuar.'
-      );
-
-      return;
-    }
-
-    Alert.alert(
-      'Agendamento Confirmado 🎉',
-      `Seu horário foi marcado às ${selectedHour}`
-    );
-
-    navigation.navigate('Reservas');
-  }
-
+export default function AgendamentoScreen() {
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      
+      {/* TOPO */}
       <View style={styles.header}>
-        <Text style={styles.title}>
-          Fazer Reserva
-        </Text>
-
-        <Text style={styles.subtitle}>
-          Escolha o melhor horário
-        </Text>
+        <Image
+          source={require('../assets/back.png')}
+          style={styles.back}
+        />
+        <Text style={styles.title}>Fazer uma reserva</Text>
       </View>
 
-      <View style={styles.card}>
-        <Text style={styles.label}>
-          Estabelecimento
-        </Text>
+      {/* CALENDÁRIO (IMAGEM) */}
+      <Image
+        source={require('../assets/calendario.png')}
+        style={styles.calendar}
+      />
 
-        <Text style={styles.value}>
-          {establishment.name}
-        </Text>
+      {/* HORÁRIOS */}
+      <Text style={styles.label}>Horário</Text>
 
-        <Text style={styles.label}>
-          Serviço
-        </Text>
-
-        <Text style={styles.value}>
-          {service.name}
-        </Text>
-
-        <Text style={styles.label}>
-          Valor
-        </Text>
-
-        <Text style={styles.price}>
-          {service.price}
-        </Text>
-      </View>
-
-      <Text style={styles.sectionTitle}>
-        Horários disponíveis
-      </Text>
-
-      <View style={styles.hoursContainer}>
-        {hours.map((hour) => (
+      <View style={styles.times}>
+        {['09:00', '09:30', '10:00', '10:30'].map((hora, i) => (
           <TouchableOpacity
-            key={hour}
-            style={[
-              styles.hourButton,
-              selectedHour === hour &&
-                styles.hourButtonSelected,
-            ]}
-            onPress={() => setSelectedHour(hour)}
+            key={i}
+            style={[styles.time, hora === '09:30' && styles.active]}
           >
-            <Text
-              style={[
-                styles.hourText,
-                selectedHour === hour &&
-                  styles.hourTextSelected,
-              ]}
-            >
-              {hour}
+            <Text style={hora === '09:30' ? styles.activeText : styles.timeText}>
+              {hora}
             </Text>
           </TouchableOpacity>
         ))}
       </View>
 
-      <TouchableOpacity
-        style={styles.confirmButton}
-        onPress={handleBooking}
-      >
-        <Text style={styles.confirmButtonText}>
-          Confirmar Reserva
-        </Text>
+      {/* SERVIÇO */}
+      <View style={styles.card}>
+        <Text>Consulta Dr. Alberto Souza</Text>
+        <Text style={styles.price}>R$ 300,00</Text>
+      </View>
+
+      {/* BOTÃO */}
+      <TouchableOpacity style={styles.confirm}>
+        <Text style={styles.confirmText}>Confirmar reserva</Text>
       </TouchableOpacity>
 
-      <View style={{ height: 40 }} />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafa',
-    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+    padding: 20,
   },
 
   header: {
-    marginTop: 60,
-    marginBottom: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+
+  back: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
   },
 
   title: {
-    fontSize: 32,
+    fontSize: 18,
+    color: '#5cc6ba',
     fontWeight: 'bold',
-    color: '#222',
   },
 
-  subtitle: {
-    marginTop: 8,
-    fontSize: 16,
-    color: '#777',
-  },
-
-  card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 24,
-    padding: 22,
-    marginBottom: 35,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.06,
-    shadowRadius: 5,
-    elevation: 4,
+  calendar: {
+    width: '100%',
+    height: 250,
+    resizeMode: 'contain',
+    marginVertical: 10,
   },
 
   label: {
-    fontSize: 14,
-    color: '#888',
-    marginTop: 15,
+    marginTop: 10,
+    fontWeight: '600',
   },
 
-  value: {
-    marginTop: 6,
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#222',
+  times: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginVertical: 10,
+  },
+
+  time: {
+    padding: 10,
+    backgroundColor: '#eee',
+    borderRadius: 10,
+    marginRight: 10,
+    marginBottom: 10,
+  },
+
+  active: {
+    backgroundColor: '#5cc6ba',
+  },
+
+  timeText: {
+    color: '#333',
+  },
+
+  activeText: {
+    color: '#fff',
+  },
+
+  card: {
+    marginTop: 20,
   },
 
   price: {
-    marginTop: 6,
-    fontSize: 20,
-    fontWeight: 'bold',
     color: '#5cc6ba',
+    marginTop: 5,
   },
 
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#222',
-    marginBottom: 20,
-  },
-
-  hoursContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-
-  hourButton: {
-    width: '30%',
-    height: 60,
-    backgroundColor: '#ffffff',
-    borderRadius: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 18,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-
-  hourButtonSelected: {
+  confirm: {
+    marginTop: 30,
     backgroundColor: '#5cc6ba',
-  },
-
-  hourText: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#444',
-  },
-
-  hourTextSelected: {
-    color: '#ffffff',
-  },
-
-  confirmButton: {
-    marginTop: 25,
-    height: 60,
-    backgroundColor: '#5cc6ba',
-    borderRadius: 18,
-    justifyContent: 'center',
+    padding: 15,
+    borderRadius: 12,
     alignItems: 'center',
   },
 
-  confirmButtonText: {
-    color: '#ffffff',
-    fontSize: 18,
+  confirmText: {
+    color: '#fff',
     fontWeight: 'bold',
   },
 });

@@ -6,7 +6,9 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  Image
 } from 'react-native';
+import logoHorizontal from '../../assets/logo4.png';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -15,6 +17,10 @@ export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      <Image
+  source={logoHorizontal}
+  style={styles.logo4}
+/>
        <View style={styles.header}>
         <Text style={styles.title}>Bem-vindo</Text>
         <Text style={styles.subtitle}>
@@ -66,6 +72,14 @@ export default function LoginScreen({ navigation }) {
     paddingHorizontal: 25,
     justifyContent: 'center',
   },
+
+  logo: {
+  width: 180,
+  height: 60,
+  resizeMode: 'contain',
+  alignSelf: 'center',
+  marginBottom: 30,
+},
 
   header: {
     marginBottom: 40,

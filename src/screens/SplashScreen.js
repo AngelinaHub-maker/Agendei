@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { LogBox } from 'react-native';
 import {
   View,
   Text,
@@ -21,16 +22,16 @@ export default function SplashScreen({ navigation }) {
       <StatusBar barStyle="light-content" backgroundColor="#5cc6ba" />
 
       <View style={styles.logoContainer}>
-   <View style={styles.circle}>
+
   <Image 
-    source={require('../assets/logo1.png')} 
+    source={require('../assets/logo.png')} 
     style={styles.logoMain}
   />
   <Image 
     source={require('../assets/loading.png')} 
     style={styles.logoOverlay}
   />
-  </View>
+
    </View>
     </View>
   );
@@ -46,22 +47,6 @@ const styles = StyleSheet.create({
 
   logoContainer: {
     alignItems: 'center',
-  },
-
-  circle: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
-    backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 25,
-  },
-
-  logoText: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: '#5cc6ba',
   },
 
   title: {
