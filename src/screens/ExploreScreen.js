@@ -42,7 +42,7 @@ export default function ExploreScreen({ navigation }) {
             key={item.id}
             style={styles.card}
             onPress={() =>
-              navigation.navigate('Establishment', {
+              navigation.navigate('Estabelecimento', {
                 establishment: item,
               })
             }

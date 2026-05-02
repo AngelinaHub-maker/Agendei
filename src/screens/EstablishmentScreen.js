@@ -57,7 +57,7 @@ export default function EstablishmentScreen({
             <TouchableOpacity
               style={styles.button}
               onPress={() =>
-                navigation.navigate('Booking', {
+               navigation.navigate('Agendamento', {
                   establishment,
                   service,
                 })
