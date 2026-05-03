@@ -13,7 +13,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import EstablishmentScreen from '../screens/EstablishmentScreen';
 import BookingScreen from '../screens/BookingScreen';
 import SplashScreen from '../screens/SplashScreen';
-import BookingScreen from '../screens/BookingScreen';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
