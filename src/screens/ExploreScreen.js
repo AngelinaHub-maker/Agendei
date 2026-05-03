@@ -6,7 +6,6 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
-  
 } from 'react-native';
 
 import { establishments } from '../data/mockData';
@@ -43,7 +42,7 @@ export default function ExploreScreen({ navigation }) {
             key={item.id}
             style={styles.card}
             onPress={() =>
-              navigation.navigate('Estabelecimento', {
+              navigation.navigate('Establishment', {
                 establishment: item,
               })
             }
@@ -76,7 +75,7 @@ export default function ExploreScreen({ navigation }) {
               <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                  navigation.navigate('Establishment', {
+                  navigation.navigate('Estabelecimento', {
                     establishment: item,
                   })
                 }

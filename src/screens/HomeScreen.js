@@ -5,16 +5,15 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  
 } from 'react-native';
 
-import { categories, estabelecimentos } from '../data/mockData';
+import { categories, establishments } from '../data/mockData';
 
 export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.greeting}>Olá, Angelina 👋</Text>
+        <Text style={styles.greeting}>Olá, Natan 👋</Text>
         <Text style={styles.subtitle}>
           Encontre seu agendamento ideal
         </Text>
@@ -46,13 +45,13 @@ export default function HomeScreen({ navigation }) {
         Mais populares
       </Text>
 
-      {estabelecimentos.map((item) => (
+      {establishments.map((item) => (
         <TouchableOpacity
           key={item.id}
           style={styles.card}
           onPress={() =>
-            navigation.navigate('Estabelecimento', {
-              estabelecimento: item,
+            navigation.navigate('Establishment', {
+              establishment: item,
             })
           }
         >

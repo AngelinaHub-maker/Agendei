@@ -16,7 +16,7 @@ export default function SplashScreen({ navigation }) {
     return () => clearTimeout(timer);
   }, []);
 
-    return (
+  return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#5cc6ba" />
 

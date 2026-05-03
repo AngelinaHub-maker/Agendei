@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
@@ -58,7 +57,7 @@ export default function EstablishmentScreen({
             <TouchableOpacity
               style={styles.button}
               onPress={() =>
-               navigation.navigate('Agendamento', {
+                navigation.navigate('Booking', {
                   establishment,
                   service,
                 })

@@ -64,14 +64,14 @@ export default function AppNavigator() {
       />
 
       <Stack.Screen
-        name="Estabelecimento"
-        component={EstabelecimentoScreen}
-      />
+  name="Estabelecimento"
+  component={EstabelecimentoScreen}
+/>
 
-      <Stack.Screen
-        name="Agendamento"
-        component={AgendamentoScreen}
-      />
+<Stack.Screen
+  name="Agendamento"
+  component={AgendamentoScreen}
+/>
     </Stack.Navigator>
   );
 }

@@ -18,11 +18,11 @@ export default function ProfileScreen() {
         </View>
 
         <Text style={styles.name}>
-          natan Aguiar
+          Angelina Freitas
         </Text>
 
         <Text style={styles.email}>
-          nataNet@email.com
+          angelina@email.com
         </Text>
       </View>
 
