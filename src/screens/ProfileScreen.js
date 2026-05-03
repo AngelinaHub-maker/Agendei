@@ -3,200 +3,91 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  ScrollView,
+  Image,
 } from 'react-native';
 
-export default function ProfileScreen() {
+export default function PerfilScreen() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>
-            A
-          </Text>
-        </View>
+    <View style={styles.container}>
 
-        <Text style={styles.name}>
-          Angelina Freitas
-        </Text>
+      {/* HEADER */}
+      <Text style={styles.title}>Meu Perfil</Text>
 
-        <Text style={styles.email}>
-          angelina@email.com
-        </Text>
+      {/* INFO */}
+      <View style={styles.card}>
+        <Text style={styles.label}>Nome</Text>
+        <Text style={styles.value}>Hebert Stein Mazutti</Text>
+
+        <Text style={styles.label}>E-mail</Text>
+        <Text style={styles.value}>heber@9coders.com.br</Text>
       </View>
 
-      <View style={styles.section}>
-        <TouchableOpacity style={styles.optionCard}>
-          <Text style={styles.optionIcon}>
-            👤
-          </Text>
-
-          <View>
-            <Text style={styles.optionTitle}>
-              Editar Perfil
-            </Text>
-
-            <Text style={styles.optionSubtitle}>
-              Atualize suas informações
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.optionCard}>
-          <Text style={styles.optionIcon}>
-            🔔
-          </Text>
-
-          <View>
-            <Text style={styles.optionTitle}>
-              Notificações
-            </Text>
-
-            <Text style={styles.optionSubtitle}>
-              Gerencie seus alertas
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.optionCard}>
-          <Text style={styles.optionIcon}>
-            💳
-          </Text>
-
-          <View>
-            <Text style={styles.optionTitle}>
-              Pagamentos
-            </Text>
-
-            <Text style={styles.optionSubtitle}>
-              Métodos e cartões
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.optionCard}>
-          <Text style={styles.optionIcon}>
-            📞
-          </Text>
-
-          <View>
-            <Text style={styles.optionTitle}>
-              Suporte
-            </Text>
-
-            <Text style={styles.optionSubtitle}>
-              Precisa de ajuda?
-            </Text>
-          </View>
-        </TouchableOpacity>
+      {/* RODAPÉ */}
+      <View style={styles.tabBar}>
+        <Image source={require('../../assets/home.png')} style={styles.icon} />
+        <Image source={require('../../assets/search.png')} style={styles.icon} />
+        <Image source={require('../../assets/calendar.png')} style={styles.icon} />
+        <Image source={require('../../assets/user.png')} style={styles.iconActive} />
       </View>
 
-      <TouchableOpacity style={styles.logoutButton}>
-        <Text style={styles.logoutText}>
-          Sair da Conta
-        </Text>
-      </TouchableOpacity>
-
-      <View style={{ height: 40 }} />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafa',
+    backgroundColor: '#f5f7f6',
+    paddingTop: 50,
     paddingHorizontal: 20,
   },
 
-  header: {
-    marginTop: 60,
-    alignItems: 'center',
-    marginBottom: 35,
-  },
-
-  avatar: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
-    backgroundColor: '#5cc6ba',
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 5,
-    elevation: 4,
-  },
-
-  avatarText: {
-    fontSize: 42,
-    color: '#ffffff',
+  title: {
+    textAlign: 'center',
+    fontSize: 20,
     fontWeight: 'bold',
+    color: '#5cc6ba',
+    marginBottom: 20,
   },
 
-  name: {
-    marginTop: 20,
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#222',
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 18,
+    padding: 20,
   },
 
-  email: {
-    marginTop: 8,
-    fontSize: 16,
+  label: {
+    fontSize: 13,
     color: '#777',
-  },
-
-  section: {
     marginTop: 10,
   },
 
-  optionCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 22,
-    padding: 20,
-    marginBottom: 18,
+  value: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#333',
+  },
 
+  tabBar: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: 60,
+    backgroundColor: '#fff',
     flexDirection: 'row',
-    alignItems: 'center',
-
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-
-  optionIcon: {
-    fontSize: 28,
-    marginRight: 18,
-  },
-
-  optionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222',
-  },
-
-  optionSubtitle: {
-    marginTop: 5,
-    fontSize: 14,
-    color: '#777',
-  },
-
-  logoutButton: {
-    marginTop: 20,
-    backgroundColor: '#ff5c5c',
-    height: 58,
-    borderRadius: 18,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
 
-  logoutText: {
-    color: '#ffffff',
-    fontSize: 17,
-    fontWeight: 'bold',
+  icon: {
+    width: 24,
+    height: 24,
+    opacity: 0.5,
+  },
+
+  iconActive: {
+    width: 24,
+    height: 24,
+    tintColor: '#5cc6ba',
   },
 });

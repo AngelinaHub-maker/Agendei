@@ -4,106 +4,56 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
-  Alert,
+  Image,
 } from 'react-native';
 
-export default function BookingScreen({
-  route,
-  navigation,
-}) {
-  const { establishment, service } = route.params;
+export default function BookingScreen({ route, navigation }) {
+  const { service, establishment } = route.params;
 
   const [selectedHour, setSelectedHour] = useState(null);
 
-  const hours = [
-    '08:00',
-    '09:00',
-    '10:00',
-    '11:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-  ];
-
-  function handleBooking() {
-    if (!selectedHour) {
-      Alert.alert(
-        'Selecione um horário',
-        'Escolha um horário para continuar.'
-      );
-
-      return;
-    }
-
-    Alert.alert(
-      'Agendamento Confirmado 🎉',
-      `Seu horário foi marcado às ${selectedHour}`
-    );
-
-    navigation.navigate('Reservas');
-  }
+  const hours = ['09:00', '10:00', '14:00', '16:00'];
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>
-          Fazer Reserva
-        </Text>
+    <View style={styles.container}>
 
-        <Text style={styles.subtitle}>
-          Escolha o melhor horário
-        </Text>
-      </View>
+      {/* SETA */}
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text style={styles.back}>←</Text>
+      </TouchableOpacity>
 
-      <View style={styles.card}>
-        <Text style={styles.label}>
-          Estabelecimento
-        </Text>
+      {/* TÍTULO */}
+      <Text style={styles.title}>Agendamento</Text>
 
-        <Text style={styles.value}>
-          {establishment.name}
-        </Text>
+      {/* CALENDÁRIO (IMAGEM) */}
+      <Image
+        source={require('../../assets/calendario.png')}
+        style={styles.calendar}
+      />
 
-        <Text style={styles.label}>
-          Serviço
-        </Text>
+      {/* INFO */}
+      <Text style={styles.service}>{service.name}</Text>
+      <Text style={styles.establishment}>{establishment.name}</Text>
 
-        <Text style={styles.value}>
-          {service.name}
-        </Text>
-
-        <Text style={styles.label}>
-          Valor
-        </Text>
-
-        <Text style={styles.price}>
-          {service.price}
-        </Text>
-      </View>
-
-      <Text style={styles.sectionTitle}>
-        Horários disponíveis
-      </Text>
+      {/* HORÁRIOS */}
+      <Text style={styles.section}>Horários disponíveis</Text>
 
       <View style={styles.hoursContainer}>
         {hours.map((hour) => (
           <TouchableOpacity
             key={hour}
             style={[
-              styles.hourButton,
-              selectedHour === hour &&
-                styles.hourButtonSelected,
+              styles.hourBox,
+              selectedHour === hour && styles.hourSelected
             ]}
             onPress={() => setSelectedHour(hour)}
           >
             <Text
-              style={[
-                styles.hourText,
-                selectedHour === hour &&
-                  styles.hourTextSelected,
-              ]}
+              style={
+                selectedHour === hour
+                  ? styles.hourTextSelected
+                  : styles.hourText
+              }
             >
               {hour}
             </Text>
@@ -111,130 +61,96 @@ export default function BookingScreen({
         ))}
       </View>
 
-      <TouchableOpacity
-        style={styles.confirmButton}
-        onPress={handleBooking}
-      >
-        <Text style={styles.confirmButtonText}>
-          Confirmar Reserva
-        </Text>
+      {/* BOTÃO */}
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Confirmar</Text>
       </TouchableOpacity>
 
-      <View style={{ height: 40 }} />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafa',
-    paddingHorizontal: 20,
+    backgroundColor: '#f5f7f6',
+    padding: 20,
+    paddingTop: 50,
   },
 
-  header: {
-    marginTop: 60,
-    marginBottom: 30,
+  back: {
+    fontSize: 24,
+    marginBottom: 10,
   },
 
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#222',
-  },
-
-  subtitle: {
-    marginTop: 8,
-    fontSize: 16,
-    color: '#777',
-  },
-
-  card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 24,
-    padding: 22,
-    marginBottom: 35,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.06,
-    shadowRadius: 5,
-    elevation: 4,
-  },
-
-  label: {
-    fontSize: 14,
-    color: '#888',
-    marginTop: 15,
-  },
-
-  value: {
-    marginTop: 6,
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#222',
-  },
-
-  price: {
-    marginTop: 6,
+    textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
     color: '#5cc6ba',
+    marginBottom: 20,
   },
 
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#222',
+  calendar: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
     marginBottom: 20,
+  },
+
+  service: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  establishment: {
+    color: '#777',
+    marginBottom: 15,
+  },
+
+  section: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontWeight: 'bold',
   },
 
   hoursContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
   },
 
-  hourButton: {
-    width: '30%',
-    height: 60,
-    backgroundColor: '#ffffff',
-    borderRadius: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 18,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 3,
+  hourBox: {
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    marginRight: 10,
+    marginBottom: 10,
   },
 
-  hourButtonSelected: {
+  hourSelected: {
     backgroundColor: '#5cc6ba',
   },
 
   hourText: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#444',
+    color: '#333',
   },
 
   hourTextSelected: {
-    color: '#ffffff',
+    color: '#fff',
+    fontWeight: 'bold',
   },
 
-  confirmButton: {
-    marginTop: 25,
-    height: 60,
+  button: {
+    marginTop: 30,
     backgroundColor: '#5cc6ba',
-    borderRadius: 18,
-    justifyContent: 'center',
+    padding: 15,
+    borderRadius: 12,
     alignItems: 'center',
   },
 
-  confirmButtonText: {
-    color: '#ffffff',
-    fontSize: 18,
+  buttonText: {
+    color: '#fff',
     fontWeight: 'bold',
   },
 });
