@@ -1,7 +1,7 @@
 export const categories = [
   { id: 1, name: 'Médico', image: require('../../assets/categories/cat-medico.png') },
   { id: 2, name: 'Dentista', image: require('../../assets/categories/dentista.png') },
-  { id: 3, name: 'Cabeleireiro', image: require('../../assets/categories/cabelo.png') },
+  { id: 3, name: 'Cabeleireiro', image: require('../../assets/categories/cat-cabelo.png') },
 
   { id: 4, name: 'Personal', image: require('../../assets/categories/cat-personal.png') },
   { id: 5, name: 'Petshop', image: require('../../assets/categories/cat-pet.png') },
