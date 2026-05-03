@@ -6,9 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
-
+  Image,
 } from 'react-native';
-
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -18,118 +17,101 @@ export default function LoginScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
-       <View style={styles.header}>
-        <Text style={styles.title}>Bem-vindo</Text>
-        <Text style={styles.subtitle}>
-          Faça login para continuar
-        </Text>
-      </View>
+      {/* LOGO */}
+      <Image
+        source={require('../../assets/logo4.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
 
+      {/* FORM */}
       <View style={styles.form}>
-        <Text style={styles.label}>E-mail</Text>
-
         <TextInput
-          placeholder="Digite seu e-mail"
+          placeholder="E-mail"
           value={email}
           onChangeText={setEmail}
           style={styles.input}
-          keyboardType="email-address"
+          placeholderTextColor="#999"
         />
 
-        <Text style={styles.label}>Senha</Text>
-
-         <TextInput
-          placeholder="Digite sua senha"
+        <TextInput
+          placeholder="Senha"
           value={password}
           onChangeText={setPassword}
           style={styles.input}
           secureTextEntry
+          placeholderTextColor="#999"
         />
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.replace('Main')}
         >
-          <Text style={styles.buttonText}>Entrar</Text>
+          <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Text style={styles.registerText}>
-            Criar uma conta
-          </Text>
-        </TouchableOpacity>
+        <Text style={styles.footerText}>
+          Não tenho uma conta.{' '}
+          <Text style={styles.link}>Toque para criar uma agora.</Text>
+        </Text>
       </View>
     </View>
-    );
+  );
 }
-   const styles = StyleSheet.create({
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    paddingHorizontal: 25,
     justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 25,
   },
 
-  header: {
+  logo: {
+    width: 140,
+    height: 140,
     marginBottom: 40,
   },
 
-  title: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    color: '#222',
-    marginBottom: 10,
-  },
-
-  subtitle: {
-    fontSize: 16,
-    color: '#777',
-  },
-
-   form: {
+  form: {
     width: '100%',
-  },
-
-  label: {
-    fontSize: 15,
-    color: '#555',
-    marginBottom: 8,
-    marginTop: 15,
   },
 
   input: {
     width: '100%',
-    height: 58,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 16,
+    height: 55,
+    backgroundColor: '#f1f5f4',
+    borderRadius: 14,
     paddingHorizontal: 18,
-    fontSize: 16,
+    fontSize: 15,
+    marginBottom: 15,
   },
- 
+
   button: {
     width: '100%',
-    height: 58,
+    height: 55,
     backgroundColor: '#5cc6ba',
-    borderRadius: 16,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 4,
+    marginTop: 10,
   },
 
   buttonText: {
-    color: '#ffffff',
-    fontSize: 18,
+    color: '#fff',
+    fontSize: 16,
     fontWeight: 'bold',
   },
 
-  registerText: {
+  footerText: {
+    marginTop: 20,
     textAlign: 'center',
-    marginTop: 25,
+    color: '#777',
+  },
+
+  link: {
     color: '#5cc6ba',
     fontWeight: '600',
   },
-});  
+});

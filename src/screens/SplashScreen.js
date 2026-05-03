@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   StatusBar,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 
 export default function SplashScreen({ navigation }) {
@@ -20,16 +20,13 @@ export default function SplashScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#5cc6ba" />
 
-      <View style={styles.logoContainer}>
-        <View style={styles.circle}>
-          <Text style={styles.logoText}>A</Text>
-        </View>
+      <Image
+        source={require('../../assets/logo.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
 
-        <Text style={styles.title}>Agendei</Text>
-        <Text style={styles.subtitle}>
-          Seu app de agendamentos
-        </Text>
-      </View>
+      <ActivityIndicator size="large" color="#ffffff" style={styles.loader} />
     </View>
   );
 }
@@ -42,35 +39,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  logoContainer: {
-    alignItems: 'center',
+  logo: {
+    width: 160,
+    height: 160,
   },
 
-  circle: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
-    backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 25,
-  },
-
-  logoText: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: '#5cc6ba',
-  },
-
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
-
-  subtitle: {
-    marginTop: 10,
-    fontSize: 16,
-    color: '#eaf8f6',
+  loader: {
+    marginTop: 30,
   },
 });

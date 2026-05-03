@@ -5,198 +5,200 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Image,
+  TextInput,
 } from 'react-native';
 
 import { categories, establishments } from '../data/mockData';
 
 export default function HomeScreen({ navigation }) {
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
+
+      {/* HEADER */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Olá, Natan 👋</Text>
+        <Image
+          source={require('../../assets/logo4.png')}
+          style={styles.logo}
+        />
+
         <Text style={styles.subtitle}>
-          Encontre seu agendamento ideal
+          Agende os seus serviços
         </Text>
+
+        {/* BUSCA */}
+        <View style={styles.searchBox}>
+          <TextInput
+            placeholder="Qual cidade você está?"
+            style={styles.input}
+            placeholderTextColor="#999"
+          />
+          <Image
+            source={require('../../assets/pin.png')}
+            style={styles.pin}
+          />
+        </View>
       </View>
 
-      <Text style={styles.sectionTitle}>
-        Categorias
-      </Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        
+        {/* CATEGORIAS */}
+        <View style={styles.categories}>
+          {categories.map((item) => (
+            <TouchableOpacity key={item.id} style={styles.categoryCard}>
+              <Image source={item.image} style={styles.categoryImage} />
+              <Text style={styles.categoryText}>{item.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.categoriesContainer}
-      >
-        {categories.map((item) => (
-          <TouchableOpacity key={item.id} style={styles.categoryCard}>
-            <Text style={styles.categoryIcon}>
-              {item.icon}
-            </Text>
+        {/* LISTA */}
+        <View style={styles.list}>
+          {establishments.map((item) => (
+            <TouchableOpacity
+              key={item.id}
+              style={styles.card}
+              onPress={() =>
+                navigation.navigate('Establishment', {
+                  establishment: item,
+                })
+              }
+            >
+              <Image source={item.image} style={styles.cardImage} />
 
-            <Text style={styles.categoryText}>
-              {item.name}
-            </Text>
-          </TouchableOpacity>
-        ))}
+              <View style={styles.cardContent}>
+                <Text style={styles.cardTitle}>{item.name}</Text>
+                <Text style={styles.cardAddress}>{item.address}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+
       </ScrollView>
 
-      <Text style={styles.sectionTitle}>
-        Mais populares
-      </Text>
+      {/* MENU INFERIOR */}
+      <View style={styles.tabBar}>
+        <Image source={require('../../assets/home.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/search.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/calendar.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/user.png')} style={styles.tabIcon} />
+      </View>
 
-      {establishments.map((item) => (
-        <TouchableOpacity
-          key={item.id}
-          style={styles.card}
-          onPress={() =>
-            navigation.navigate('Establishment', {
-              establishment: item,
-            })
-          }
-        >
-          <View style={styles.imagePlaceholder}>
-            <Text style={styles.imageText}>
-              Clínica
-            </Text>
-          </View>
-
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>
-              {item.name}
-            </Text>
-
-            <Text style={styles.cardCategory}>
-              {item.category}
-            </Text>
-
-            <Text style={styles.cardAddress}>
-              {item.address}
-            </Text>
-
-            <Text style={styles.rating}>
-              ⭐ {item.rating}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafa',
-    paddingHorizontal: 20,
+    backgroundColor: '#f5f7f6',
   },
 
   header: {
-    marginTop: 60,
-    marginBottom: 30,
+    paddingTop: 50,
+    paddingHorizontal: 20,
   },
 
-  greeting: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#222',
-  },
-
-  subtitle: {
-    marginTop: 8,
-    fontSize: 16,
-    color: '#777',
-  },
-
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 18,
-    color: '#222',
-  },
-
-  categoriesContainer: {
-    marginBottom: 30,
-  },
-
-  categoryCard: {
-    width: 100,
-    height: 100,
-    backgroundColor: '#ffffff',
-    borderRadius: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 16,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
-    elevation: 3,
-  },
-
-  categoryIcon: {
-    fontSize: 30,
+  logo: {
+    width: 120,
+    height: 40,
     marginBottom: 10,
   },
 
+  subtitle: {
+    color: '#555',
+    marginBottom: 15,
+  },
+
+  searchBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#eee',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    height: 45,
+  },
+
+  input: {
+    flex: 1,
+  },
+
+  pin: {
+    width: 18,
+    height: 18,
+  },
+
+  categories: {
+   flexDirection: 'row',
+   flexWrap: 'wrap',
+   paddingHorizontal: 20,
+   justifyContent: 'space-between',
+},
+
+categoryCard: {
+  width: '30%', // mantém 3 por linha
+  backgroundColor: '#fff',
+  borderRadius: 16,
+  alignItems: 'center',
+  paddingVertical: 15,
+  marginBottom: 15,
+},
+
+  categoryImage: {
+    width: 40,
+    height: 40,
+    marginBottom: 8,
+    resizeMode: 'contain',
+  },
+
   categoryText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#444',
+    fontSize: 13,
+    textAlign: 'center',
+  },
+
+  list: {
+    paddingHorizontal: 20,
   },
 
   card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 24,
-    marginBottom: 22,
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    marginBottom: 15,
     overflow: 'hidden',
-
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 4,
   },
 
-  imagePlaceholder: {
-    height: 160,
-    backgroundColor: '#5cc6ba',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  imageText: {
-    color: '#ffffff',
-    fontSize: 22,
-    fontWeight: 'bold',
+  cardImage: {
+    width: '100%',
+    height: 140,
   },
 
   cardContent: {
-    padding: 18,
+    padding: 10,
   },
 
   cardTitle: {
-    fontSize: 22,
     fontWeight: 'bold',
-    color: '#222',
-  },
-
-  cardCategory: {
-    marginTop: 8,
-    fontSize: 15,
-    color: '#5cc6ba',
-    fontWeight: '600',
+    fontSize: 16,
   },
 
   cardAddress: {
-    marginTop: 6,
-    fontSize: 14,
     color: '#777',
+    fontSize: 13,
+    marginTop: 4,
   },
 
-  rating: {
-    marginTop: 12,
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#444',
+  tabBar: {
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderTopWidth: 0.5,
+    borderColor: '#ddd',
+  },
+
+  tabIcon: {
+    width: 24,
+    height: 24,
   },
 });

@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 
 import { establishments } from '../data/mockData';
@@ -13,197 +14,161 @@ import { establishments } from '../data/mockData';
 export default function ExploreScreen({ navigation }) {
   const [search, setSearch] = useState('');
 
-  const filteredEstablishments = establishments.filter((item) =>
+  const filtered = establishments.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>
-          Explorar
-        </Text>
 
-        <Text style={styles.subtitle}>
-          Encontre clínicas e profissionais
-        </Text>
+      {/* HEADER */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.back}>←</Text>
+        </TouchableOpacity>
+
+        <View style={styles.headerText}>
+          <Text style={styles.title}>Explorar</Text>
+          <Text style={styles.subtitle}>Médico</Text>
+        </View>
       </View>
 
-      <TextInput
-        placeholder="Buscar estabelecimento..."
-        value={search}
-        onChangeText={setSearch}
-        style={styles.searchInput}
-      />
+      {/* BUSCA */}
+      <View style={styles.searchBox}>
+        <TextInput
+          placeholder="Pesquisar"
+          value={search}
+          onChangeText={setSearch}
+          style={styles.input}
+          placeholderTextColor="#999"
+        />
+      </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {filteredEstablishments.map((item) => (
-          <TouchableOpacity
-            key={item.id}
-            style={styles.card}
-            onPress={() =>
-              navigation.navigate('Establishment', {
-                establishment: item,
-              })
-            }
-          >
-            <View style={styles.imagePlaceholder}>
-              <Text style={styles.imageText}>
-                Clínica
-              </Text>
-            </View>
-
-            <View style={styles.cardContent}>
-              <View style={styles.row}>
-                <Text style={styles.cardTitle}>
-                  {item.name}
-                </Text>
-
-                <Text style={styles.rating}>
-                  ⭐ {item.rating}
-                </Text>
-              </View>
-
-              <Text style={styles.category}>
-                {item.category}
-              </Text>
-
-              <Text style={styles.address}>
-                {item.address}
-              </Text>
-
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() =>
-                  navigation.navigate('Estabelecimento', {
-                    establishment: item,
-                  })
-                }
-              >
-                <Text style={styles.buttonText}>
-                  Ver detalhes
-                </Text>
-              </TouchableOpacity>
-            </View>
+      {/* LISTA */}
+      <ScrollView>
+        {filtered.map((item) => (
+          <TouchableOpacity key={item.id} style={styles.item}>
+            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.address}>{item.address}</Text>
+            <Text style={styles.phone}>(11) 0000-0000</Text>
           </TouchableOpacity>
         ))}
-
-        <View style={{ height: 30 }} />
       </ScrollView>
-    </View>
+
+      {/* RODAPÉ */}
+     <View style={styles.tabBar}>
+  <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+    <Image source={require('../../assets/home.png')} style={styles.icon} />
+  </TouchableOpacity>
+
+  <TouchableOpacity onPress={() => navigation.navigate('Explore')}>
+    <Image source={require('../../assets/search.png')} style={styles.iconActive} />
+  </TouchableOpacity>
+
+  <TouchableOpacity onPress={() => navigation.navigate('Reservas')}>
+    <Image source={require('../../assets/calendar.png')} style={styles.icon} />
+  </TouchableOpacity>
+
+  <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
+    <Image source={require('../../assets/user.png')} style={styles.icon} />
+  </TouchableOpacity>
+</View>
+</View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafa',
-    paddingHorizontal: 20,
+    backgroundColor: '#f1f1f1',
   },
 
   header: {
-    marginTop: 60,
-    marginBottom: 25,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 50,
+    paddingHorizontal: 15,
+    backgroundColor: '#fff',
+    paddingBottom: 10,
+  },
+
+ back: {
+  fontSize: 22,
+  color: '#5cc6ba',
+  fontWeight: 'bold',
+},
+
+  headerText: {
+    flex: 1,
+    alignItems: 'center',
+    marginRight: 24, // compensa a seta
   },
 
   title: {
-    fontSize: 32,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#222',
+    color: '#5cc6ba',
   },
 
   subtitle: {
-    marginTop: 8,
-    fontSize: 16,
+    fontSize: 13,
     color: '#777',
   },
 
-  searchInput: {
-    width: '100%',
-    height: 58,
-    backgroundColor: '#ffffff',
-    borderRadius: 18,
-    paddingHorizontal: 18,
-    marginBottom: 25,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 5,
-    elevation: 3,
+  searchBox: {
+    backgroundColor: '#fff',
+    padding: 10,
   },
 
-  card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 24,
-    overflow: 'hidden',
-    marginBottom: 22,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.07,
-    shadowRadius: 6,
-    elevation: 4,
+  input: {
+    backgroundColor: '#eee',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    height: 40,
   },
 
-  imagePlaceholder: {
-    height: 160,
-    backgroundColor: '#5cc6ba',
-    justifyContent: 'center',
-    alignItems: 'center',
+  item: {
+    backgroundColor: '#fff',
+    padding: 15,
+    borderBottomWidth: 0.5,
+    borderColor: '#ddd',
   },
 
-  imageText: {
-    color: '#ffffff',
-    fontSize: 22,
+  name: {
     fontWeight: 'bold',
-  },
-
-  cardContent: {
-    padding: 18,
-  },
-
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-
-  cardTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#222',
-  },
-
-  rating: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#444',
-  },
-
-  category: {
-    marginTop: 8,
-    color: '#5cc6ba',
-    fontWeight: '600',
-    fontSize: 15,
+    fontSize: 14,
+    color: '#333',
   },
 
   address: {
-    marginTop: 6,
+    fontSize: 13,
     color: '#777',
-    fontSize: 14,
+    marginTop: 2,
   },
 
-  button: {
-    marginTop: 18,
-    backgroundColor: '#5cc6ba',
-    height: 48,
-    borderRadius: 14,
-    justifyContent: 'center',
+  phone: {
+    fontSize: 12,
+    color: '#aaa',
+    marginTop: 2,
+  },
+
+  tabBar: {
+    height: 60,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
 
-  buttonText: {
-    color: '#ffffff',
-    fontWeight: 'bold',
-    fontSize: 16,
+  icon: {
+    width: 24,
+    height: 24,
+    opacity: 0.5,
+  },
+
+  iconActive: {
+    width: 24,
+    height: 24,
+    tintColor: '#5cc6ba',
   },
 });
