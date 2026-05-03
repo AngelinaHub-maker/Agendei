@@ -23,7 +23,7 @@ export default function EstablishmentScreen({ route, navigation }) {
 
       <ScrollView>
 <Image
-  source={require('../../assets/clinica.png')}
+  source={require('../../assets/foto-clinica.png')}
   style={styles.image}
 />
 
@@ -108,6 +108,11 @@ const styles = StyleSheet.create({
 
 imageText: {
   color: '#555',
+},
+
+image: {
+  width: '100%',
+  height: 220,
 },
 
   address: {

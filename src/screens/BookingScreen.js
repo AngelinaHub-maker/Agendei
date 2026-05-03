@@ -112,11 +112,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     fontWeight: 'bold',
+
   },
 
   hoursContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    
   },
 
   hourBox: {
