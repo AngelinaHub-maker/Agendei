@@ -23,7 +23,7 @@ export default function EstablishmentScreen({ route, navigation }) {
 
       <ScrollView>
 <Image
-  source={require('../../assets/foto-clinica.png')}
+  source={require('../../assets/clinic1/foto-clinica.jpg')}
   style={styles.image}
 />
 

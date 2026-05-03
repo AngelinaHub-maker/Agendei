@@ -24,10 +24,10 @@ export default function PerfilScreen() {
 
       {/* RODAPÉ */}
       <View style={styles.tabBar}>
-        <Image source={require('../../assets/home.png')} style={styles.icon} />
-        <Image source={require('../../assets/search.png')} style={styles.icon} />
-        <Image source={require('../../assets/calendar.png')} style={styles.icon} />
-        <Image source={require('../../assets/user.png')} style={styles.iconActive} />
+        <Image source={require('../../assets/icons/home.png')} style={styles.icon} />
+        <Image source={require('../../assets/icons/search.png')} style={styles.icon} />
+        <Image source={require('../../assets/icons/calendar.png')} style={styles.icon} />
+        <Image source={require('../../assets/icons/user.png')} style={styles.iconActive} />
       </View>
 
     </View>

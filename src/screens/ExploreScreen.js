@@ -58,19 +58,19 @@ export default function ExploreScreen({ navigation }) {
       {/* RODAPÉ */}
      <View style={styles.tabBar}>
   <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-    <Image source={require('../../assets/home.png')} style={styles.icon} />
+    <Image source={require('../../assets/icons/home.png')} style={styles.icon} />
   </TouchableOpacity>
 
   <TouchableOpacity onPress={() => navigation.navigate('Explore')}>
-    <Image source={require('../../assets/search.png')} style={styles.iconActive} />
+    <Image source={require('../../assets/icons/search.png')} style={styles.iconActive} />
   </TouchableOpacity>
 
   <TouchableOpacity onPress={() => navigation.navigate('Reservas')}>
-    <Image source={require('../../assets/calendar.png')} style={styles.icon} />
+    <Image source={require('../../assets/icons/calendar.png')} style={styles.icon} />
   </TouchableOpacity>
 
   <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
-    <Image source={require('../../assets/user.png')} style={styles.icon} />
+    <Image source={require('../../assets/icons/user.png')} style={styles.icon} />
   </TouchableOpacity>
 </View>
 </View>

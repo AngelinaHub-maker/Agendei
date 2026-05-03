@@ -18,7 +18,7 @@ export default function HomeScreen({ navigation }) {
       {/* HEADER */}
       <View style={styles.header}>
         <Image
-          source={require('../../assets/logo4.png')}
+          source={require('../../assets/clinic1/logo4.png')}
           style={styles.logo}
         />
 
@@ -34,7 +34,7 @@ export default function HomeScreen({ navigation }) {
             placeholderTextColor="#999"
           />
           <Image
-            source={require('../../assets/pin.png')}
+            source={require('../../assets/icons/pin.png')}
             style={styles.pin}
           />
         </View>
@@ -78,10 +78,10 @@ export default function HomeScreen({ navigation }) {
 
       {/* MENU INFERIOR */}
       <View style={styles.tabBar}>
-        <Image source={require('../../assets/home.png')} style={styles.tabIcon} />
-        <Image source={require('../../assets/search.png')} style={styles.tabIcon} />
-        <Image source={require('../../assets/calendar.png')} style={styles.tabIcon} />
-        <Image source={require('../../assets/user.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/icons/home.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/icons/search.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/icons/calendar.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/icons/user.png')} style={styles.tabIcon} />
       </View>
 
     </View>

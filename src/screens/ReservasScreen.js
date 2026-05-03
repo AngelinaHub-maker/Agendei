@@ -31,25 +31,25 @@ export default function ReservasScreen() {
             {/* DATA E HORA */}
             <View style={styles.row}>
               <View style={styles.info}>
-                <Image source={require('../../assets/calendar.png')} style={styles.icon} />
+                <Image source={require('../../assets/icons/calendar.png')} style={styles.icon} />
                 <Text style={styles.text}>{item.date}</Text>
               </View>
 
               <View style={styles.info}>
-                <Image source={require('../../assets/clock.png')} style={styles.icon} />
+                <Image source={require('../../assets/icons/clock.png')} style={styles.icon} />
                 <Text style={styles.text}>{item.hour}</Text>
               </View>
             </View>
 
             {/* VALOR */}
             <View style={styles.info}>
-              <Image source={require('../../assets/valor.png')} style={styles.icon} />
+              <Image source={require('../../assets/icons/valor.png')} style={styles.icon} />
               <Text style={styles.text}>R$ 350,00</Text>
             </View>
 
             {/* ENDEREÇO */}
             <View style={styles.info}>
-              <Image source={require('../../assets/pin.png')} style={styles.icon} />
+              <Image source={require('../../assets/icons/pin.png')} style={styles.icon} />
               <Text style={styles.text}>
                 Av. Nove de Julho, 854{'\n'}Centro - São Paulo
               </Text>
@@ -74,10 +74,10 @@ export default function ReservasScreen() {
 
       {/* RODAPÉ */}
       <View style={styles.tabBar}>
-        <Image source={require('../../assets/home.png')} style={styles.tabIcon} />
-        <Image source={require('../../assets/search.png')} style={styles.tabIcon} />
-        <Image source={require('../../assets/calendar.png')} style={styles.tabIconActive} />
-        <Image source={require('../../assets/user.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/icons/home.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/icons/search.png')} style={styles.tabIcon} />
+        <Image source={require('../../assets/icons/calendar.png')} style={styles.tabIconActive} />
+        <Image source={require('../../assets/icons/user.png')} style={styles.tabIcon} />
       </View>
 
     </View>

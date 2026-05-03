@@ -10,9 +10,10 @@ import ExploreScreen from '../screens/ExploreScreen';
 
 import ReservasScreen from '../screens/ReservasScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import EstabelecimentoScreen from '../screens/EstabelecimentoScreen';
-import AgendamentoScreen from '../screens/AgendamentoScreen';
+import EstablishmentScreen from '../screens/EstablishmentScreen';
+import BookingScreen from '../screens/BookingScreen';
 import SplashScreen from '../screens/SplashScreen';
+import BookingScreen from '../screens/BookingScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,13 +65,13 @@ export default function AppNavigator() {
       />
 
       <Stack.Screen
-  name="Estabelecimento"
-  component={EstabelecimentoScreen}
+  name="Establishment"
+  component={EstablishmentScreen}
 />
 
 <Stack.Screen
-  name="Agendamento"
-  component={AgendamentoScreen}
+  name="Booking"
+  component={BookingScreen}
 />
     </Stack.Navigator>
   );

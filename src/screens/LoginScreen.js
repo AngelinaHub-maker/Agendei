@@ -19,7 +19,7 @@ export default function LoginScreen({ navigation }) {
 
       {/* LOGO */}
       <Image
-        source={require('../../assets/logo4.png')}
+        source={require('../../assets/clinic1/logo4.png')}
         style={styles.logo}
         resizeMode="contain"
       />
